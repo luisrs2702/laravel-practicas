@@ -81,9 +81,13 @@ Route::apiResource('asistencia',AsistenciaController::class)->except([
 ]); 
 
 
+Route::group(['middleware'=>["auth:sanctum"]],function(){
+    Route::get('plans',[PlanController::class,'index']);
+    Route::post('plan',[PlanController::class,'store']);
+});
 
-Route::get('plans',[PlanController::class,'index']);
-Route::post('plan',[PlanController::class,'store']);
+//Route::get('plans',[PlanController::class,'index']);
+//Route::post('plan',[PlanController::class,'store']);
 
 //Route::get("estudiantes",[EstudiantesController::class,'index']);
 Route::get('ventas/{id}',[ProductoVentaController::class,'show']);

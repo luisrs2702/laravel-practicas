@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             PlanesSeeder::class,
             MiembroSeeder::class,
+            RoleSeeder::class,
             // Agrega aquí cualquier otro seeder que necesites
         ]);
     }

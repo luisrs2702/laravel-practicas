@@ -18,6 +18,13 @@ class PlanController extends Controller
     }
 
     public function store(Request $request){
+        /** @var \App\Models\User $user */
+        $user = auth()->user();
+        if (!$user->hasRole('recepcionista')) {
+            return response()->json([
+                'message' => 'No tienes permisos para realizar esta acción.'
+            ], 403);
+        }
         $request->validate([
             'nombre_plan'=>'required|string|max:100|min:4',
             'descripcion'=>'required|string|max:100|min:3',

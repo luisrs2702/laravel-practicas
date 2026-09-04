@@ -29,5 +29,10 @@ return [
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
+    'first_user' => [
+        'name' => env('FIRST_USER_NAME', 'Admin temp'),
+        'email' => env('FIRST_USER_EMAIL', 'admin@example.com'),
+        'password' => env('FIRST_USER_PASSWORD', 'password'),
+    ],
 
 ];

@@ -18,6 +18,8 @@ class UserController extends Controller{
         return $users;
     }
     public function register(Request $request){
+        /** @var \App\Models\User $user */
+       
         $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users',
@@ -30,7 +32,7 @@ class UserController extends Controller{
         $user->password = Hash::make($request->password);//encriptar password
         $user->save();
         //return response()->json(["status"=>1,"msg"=>"Registro exitoso"]);
-        return response(['error' => false, 'msg' => 'Registro exitoso'],201);
+        return response(['success' => true, 'msg' => 'Registro exitoso'],201);
         
     }
     public function login(Request $request){
@@ -51,7 +53,7 @@ class UserController extends Controller{
         }else{
             return response()->json(["error"=>true,"msg"=>"Email o Password incorrectos"],401);
         }*/
-        if (!Auth::attempt($credentials)) {
+        if (!Auth::guard('web')->attempt($credentials)) {
             return response()->json(["error"=>true,"msg"=>"Email o Password incorrectos"],401);
         }
         /** @var \App\Models\User $user **/
