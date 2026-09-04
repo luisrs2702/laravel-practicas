@@ -76,7 +76,7 @@ class UserController extends Controller{
         return response()->json([
             'status'=>true,
             'message'=>'Sesion iniciada correctamente',
-            'data'=>$user,
+            'user'=>$user,
             'expires_at'=>$expiresAt,
             'access_token'=>$tokenPlainText,
             //'expires_at' =>$expiresAt ? Carbon::parse($expiresAt)->toDateTimeString() : null,
