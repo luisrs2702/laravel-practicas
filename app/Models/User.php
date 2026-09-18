@@ -14,6 +14,7 @@ class User extends Authenticatable{
     use HasRoles;
 
     protected $table="users";
+    protected $guard_name = 'api';
 
     /**
      * The attributes that are mass assignable.

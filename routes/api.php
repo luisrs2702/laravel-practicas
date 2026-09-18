@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\NavigationController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\AsistenciaController;
 use App\Http\Controllers\EquipoController;
@@ -84,6 +85,7 @@ Route::apiResource('asistencia',AsistenciaController::class)->except([
 Route::group(['middleware'=>["auth:sanctum"]],function(){
     Route::get('plans',[PlanController::class,'index']);
     Route::post('plan',[PlanController::class,'store']);
+    Route::get('/user/menu', [NavigationController::class, 'getUserMenu']);
 });
 
 //Route::get('plans',[PlanController::class,'index']);
@@ -123,7 +125,7 @@ Route::apiResource('miembro', MiembroController::class)
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('miembro', MiembroController::class)
-        ->only(['store', 'update', 'destroy']);
+    ->only(['store', 'update', 'destroy']);
 });
 
 Route::group(['middleware'=>["auth:sanctum"]],function(){
